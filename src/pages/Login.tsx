@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
 
 let API_URL = "https://goahead-backend.onrender.com/api/auth"; // Corrected URL for backend
 
@@ -41,6 +49,28 @@ const Login = () => {
         <div className="text-center">
           <h2 className="text-3xl font-bold text-primary">Welcome Back</h2>
           <p className="mt-2 text-gray-600">Sign in to continue your journey</p>
+        </div>
+
+        <div className="space-y-4">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+        </div>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-white px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
         </div>
 
         <Form {...form}>
