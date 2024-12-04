@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let API_URL = "http://localhost:3001/api/auth"; // Corrected URL for backend
+let API_URL = "https://goahead-backend.onrender.com/api/auth"; // Corrected URL for backend
 
 interface LoginFormValues {
   email: string;
