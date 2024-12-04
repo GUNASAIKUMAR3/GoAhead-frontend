@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let API_URL = "http://localhost:3001/api/auth"; // Corrected URL for backend
+let API_URL = "https://goahead-backend.onrender.com/api/auth"; // Corrected URL for backend
 
 interface SignUpFormValues {
   fullName: string;
