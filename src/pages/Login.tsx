@@ -100,7 +100,7 @@ const Login = () => {
           <p className="mt-2 text-gray-600">Sign in to continue your journey</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="justify-center items-center">
           <GoogleLogin
             onSuccess={(credentialResponse) =>
               handleGoogleAuth(credentialResponse, false)
@@ -108,6 +108,7 @@ const Login = () => {
             onError={() => {
               console.log("Login Failed");
             }}
+            logo_alignment="center"
           />
         </div>
 

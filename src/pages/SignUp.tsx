@@ -109,7 +109,7 @@ const SignUp = () => {
           <p className="mt-2 text-gray-600">Join us to start your journey</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="justify-center items-center">
           <GoogleLogin
             text="signup_with"
             onSuccess={async (credentialResponse) =>
@@ -118,6 +118,7 @@ const SignUp = () => {
             onError={() => {
               console.log("signup Failed");
             }}
+            logo_alignment="center"
           />
         </div>
 
