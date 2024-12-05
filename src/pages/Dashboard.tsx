@@ -11,9 +11,24 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState<Task[]>([
-    { id: 1, title: "Complete project documentation", completed: false, priority: "urgent-important" },
-    { id: 2, title: "Review pull requests", completed: true, priority: "important" },
-    { id: 3, title: "Team meeting at 2 PM", completed: false, priority: "neither" },
+    {
+      id: 1,
+      title: "Complete project documentation",
+      completed: false,
+      priority: "urgent-important",
+    },
+    {
+      id: 2,
+      title: "Review pull requests",
+      completed: false,
+      priority: "urgent-important",
+    },
+    {
+      id: 3,
+      title: "Team meeting at 2 PM",
+      completed: false,
+      priority: "urgent-important",
+    },
   ]);
 
   const handleAddTask = () => {
@@ -41,9 +56,7 @@ const Dashboard = () => {
 
   const handlePriorityChange = (taskId: number, priority: TaskPriority) => {
     setTasks(
-      tasks.map((task) =>
-        task.id === taskId ? { ...task, priority } : task
-      )
+      tasks.map((task) => (task.id === taskId ? { ...task, priority } : task))
     );
   };
 
@@ -60,21 +73,25 @@ const Dashboard = () => {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px]">
               <nav className="flex flex-col gap-4 mt-8">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="justify-start"
                   onClick={() => navigate("/dashboard")}
                 >
                   Dashboard
                 </Button>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="justify-start"
                   onClick={() => navigate("/analysis")}
                 >
                   Analysis
                 </Button>
-                <Button variant="ghost" className="justify-start">
+                <Button
+                  variant="ghost"
+                  className="justify-start"
+                  onClick={() => navigate("/settings")}
+                >
                   Settings
                 </Button>
               </nav>
@@ -85,8 +102,10 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="pt-20">
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-primary mb-6">Today's Tasks</h2>
-            
+            <h2 className="text-2xl font-bold text-primary mb-6">
+              Today's Tasks
+            </h2>
+
             <TaskInput
               newTask={newTask}
               setNewTask={setNewTask}

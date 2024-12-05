@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Questionnaire from "./pages/Questionnaire";
 import Dashboard from "./pages/Dashboard";
 import Analysis from "./pages/Analysis";
+import Settings from "./pages/Settings";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/questionnaire" element={<Questionnaire />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/analysis" element={<Analysis />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

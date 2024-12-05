@@ -14,7 +14,7 @@ import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwt_decode } from "jwt-decode-es";
 
-let API_URL = "https://goahead-backend.onrender.com/api/auth"; // Corrected URL for backend
+let API_URL = "https://goahead-backend.onrender.com/api/auth";
 
 interface LoginFormValues {
   email: string;
