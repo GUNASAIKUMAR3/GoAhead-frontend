@@ -60,10 +60,7 @@ const Login = () => {
       };
 
       // Send data to backend using Axios
-      const response = await axios.post(
-        "http://localhost:5050/api/auth/google",
-        user
-      );
+      const response = await axios.post(`${API_URL}/google`, user);
 
       // Handle successful response
       console.log(
