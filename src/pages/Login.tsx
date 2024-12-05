@@ -100,7 +100,7 @@ const Login = () => {
           <p className="mt-2 text-gray-600">Sign in to continue your journey</p>
         </div>
 
-        <div className="justify-center items-center">
+        <div className="justify-center">
           <GoogleLogin
             onSuccess={(credentialResponse) =>
               handleGoogleAuth(credentialResponse, false)
