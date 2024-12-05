@@ -65,12 +65,12 @@ const SignUp = () => {
         name: decoded.name,
         email: decoded.email,
         picture: decoded.picture,
-        isNewUser, // True for signup, false for login
+        isNewUser,
       };
       console.log(user);
 
       // Send data to backend using Axios
-      const response = await axios.post(`${API_URL}/api/auth/google`, user);
+      const response = await axios.post(`${API_URL}/google`, user);
 
       // Handle successful response
       console.log(
