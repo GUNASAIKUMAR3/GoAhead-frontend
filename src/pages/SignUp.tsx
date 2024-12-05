@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
+import { jwt_decode } from "jwt-decode-es";
 
 let API_URL = "https://goahead-backend.onrender.com/api/auth"; // Corrected URL for backend
 
@@ -43,12 +44,51 @@ const SignUp = () => {
       const response = await axios.post(`${API_URL}/signup`, data);
 
       if (response.data.message === "User registered successfully.") {
-        alert("User registered successfully.");
-        navigate("/login"); // Redirect to login page after successful signup
+        //alert("User registered successfully.");
+        navigate("/dashboard"); // Redirect to login page after successful signup
       }
     } catch (error) {
       console.error("Error signing up:", error);
       alert("Error signing up. Please try again.");
+    }
+  };
+
+  const handleGoogleAuth = async (credentialResponse, isNewUser) => {
+    try {
+      // Decode the JWT token
+      const token = credentialResponse.credential;
+      const decoded = jwt_decode(token);
+
+      // Extract user details
+      const user = {
+        googleId: decoded.sub, // Google's unique user ID
+        name: decoded.name,
+        email: decoded.email,
+        picture: decoded.picture,
+        isNewUser, // True for signup, false for login
+      };
+
+      // Send data to backend using Axios
+      const response = await axios.post(
+        "http://localhost:5050/api/auth/google",
+        user
+      );
+
+      // Handle successful response
+      console.log(
+        `${isNewUser ? "Signup" : "Login"} successful`,
+        response.data
+      );
+      alert(`${isNewUser ? "Signup" : "Login"} successful!`);
+    } catch (error) {
+      // Handle error response
+      if (error.response) {
+        console.error("Server Error:", error.response.data.message);
+        alert(`Error: ${error.response.data.message}`);
+      } else {
+        console.error("Network Error:", error.message);
+        alert("Authentication failed. Please check your connection.");
+      }
     }
   };
 
@@ -63,13 +103,11 @@ const SignUp = () => {
         <div className="space-y-4">
           <GoogleLogin
             text="signup_with"
-            onSuccess={(credentialResponse) => {
-              const { credential } = credentialResponse;
-              console.log(credential);
-              console.log(credentialResponse);
-            }}
+            onSuccess={async (credentialResponse) =>
+              await handleGoogleAuth(credentialResponse, true)
+            }
             onError={() => {
-              console.log("Login Failed");
+              console.log("signup Failed");
             }}
           />
         </div>
@@ -84,7 +122,6 @@ const SignUp = () => {
             </span>
           </div>
         </div>
-
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

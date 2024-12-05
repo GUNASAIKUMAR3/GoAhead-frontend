@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
+import { jwt_decode } from "jwt-decode-es";
 
 let API_URL = "https://goahead-backend.onrender.com/api/auth"; // Corrected URL for backend
 
@@ -34,12 +35,51 @@ const Login = () => {
       const response = await axios.post(`${API_URL}/login`, data);
 
       if (response.data.message === "Login successful") {
-        alert("Login successful");
+        // alert("Login successful");
         navigate("/dashboard"); // Redirect to dashboard or another page after successful login
       }
     } catch (error) {
       console.error("Error logging in:", error);
       alert("Invalid credentials. Please try again.");
+    }
+  };
+
+  const handleGoogleAuth = async (credentialResponse, isNewUser) => {
+    try {
+      // Decode the JWT token
+      const token = credentialResponse.credential;
+      const decoded = jwt_decode(token);
+
+      // Extract user details
+      const user = {
+        googleId: decoded.sub, // Google's unique user ID
+        name: decoded.name,
+        email: decoded.email,
+        picture: decoded.picture,
+        isNewUser, // True for signup, false for login
+      };
+
+      // Send data to backend using Axios
+      const response = await axios.post(
+        "http://localhost:5050/api/auth/google",
+        user
+      );
+
+      // Handle successful response
+      console.log(
+        `${isNewUser ? "Signup" : "Login"} successful`,
+        response.data
+      );
+      alert(`${isNewUser ? "Signup" : "Login"} successful!`);
+    } catch (error) {
+      // Handle error response
+      if (error.response) {
+        console.error("Server Error:", error.response.data.message);
+        alert(`Error: ${error.response.data.message}`);
+      } else {
+        console.error("Network Error:", error.message);
+        alert("Authentication failed. Please check your connection.");
+      }
     }
   };
 
@@ -53,9 +93,9 @@ const Login = () => {
 
         <div className="space-y-4">
           <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-            }}
+            onSuccess={(credentialResponse) =>
+              handleGoogleAuth(credentialResponse, false)
+            }
             onError={() => {
               console.log("Login Failed");
             }}
