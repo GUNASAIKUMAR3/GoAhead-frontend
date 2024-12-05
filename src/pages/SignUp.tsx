@@ -109,7 +109,7 @@ const SignUp = () => {
           <p className="mt-2 text-gray-600">Join us to start your journey</p>
         </div>
 
-        <div className="justify-center">
+        <div className="justify-center align-center">
           <GoogleLogin
             text="signup_with"
             onSuccess={async (credentialResponse) =>
