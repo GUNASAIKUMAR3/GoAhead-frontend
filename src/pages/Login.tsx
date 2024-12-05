@@ -43,7 +43,6 @@ const Login = () => {
       alert("Invalid credentials. Please try again.");
     }
   };
-
   const handleGoogleAuth = async (credentialResponse, isNewUser) => {
     try {
       // Decode the JWT token
@@ -59,6 +58,8 @@ const Login = () => {
         isNewUser, // True for signup, false for login
       };
 
+      console.log(user);
+
       // Send data to backend using Axios
       const response = await axios.post(`${API_URL}/google`, user);
 
@@ -67,13 +68,24 @@ const Login = () => {
         `${isNewUser ? "Signup" : "Login"} successful`,
         response.data
       );
-      alert(`${isNewUser ? "Signup" : "Login"} successful!`);
+
+      if (
+        response.data.message === "User created successfully" ||
+        response.data.message === "User logged in successfully"
+      ) {
+        alert(`${isNewUser ? "Signup" : "Login"} successful!`);
+        navigate("/dashboard"); // Redirect to dashboard
+      } else {
+        console.error("Error:", response.data.message);
+        alert(response.data.message);
+      }
     } catch (error) {
-      // Handle error response
       if (error.response) {
+        // Server error response
         console.error("Server Error:", error.response.data.message);
         alert(`Error: ${error.response.data.message}`);
       } else {
+        // Network error
         console.error("Network Error:", error.message);
         alert("Authentication failed. Please check your connection.");
       }
