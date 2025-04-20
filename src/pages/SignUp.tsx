@@ -109,30 +109,6 @@ const SignUp = () => {
           <p className="mt-2 text-gray-600">Join us to start your journey</p>
         </div>
 
-        <div className="justify-center align-center">
-          <GoogleLogin
-            text="signup_with"
-            onSuccess={async (credentialResponse) =>
-              await handleGoogleAuth(credentialResponse, true)
-            }
-            onError={() => {
-              console.log("signup Failed");
-            }}
-            logo_alignment="center"
-          />
-        </div>
-
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-muted-foreground">
-              Or continue with
-            </span>
-          </div>
-        </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField

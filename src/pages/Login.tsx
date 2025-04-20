@@ -11,7 +11,6 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
 import { jwt_decode } from "jwt-decode-es";
 
 let API_URL = "https://goahead-backend.onrender.com/api/auth";
@@ -98,29 +97,6 @@ const Login = () => {
         <div className="text-center">
           <h2 className="text-3xl font-bold text-primary">Welcome Back</h2>
           <p className="mt-2 text-gray-600">Sign in to continue your journey</p>
-        </div>
-
-        <div className="justify-center align-center">
-          <GoogleLogin
-            onSuccess={(credentialResponse) =>
-              handleGoogleAuth(credentialResponse, false)
-            }
-            onError={() => {
-              console.log("Login Failed");
-            }}
-            logo_alignment="center"
-          />
-        </div>
-
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-muted-foreground">
-              Or continue with
-            </span>
-          </div>
         </div>
 
         <Form {...form}>
