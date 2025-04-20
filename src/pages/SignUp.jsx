@@ -11,19 +11,16 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { jwt_decode } from "jwt-decode-es";
 
 let API_URL = "https://goahead-backend.onrender.com/api/auth"; 
 
 const SignUp = () => {
   const navigate = useNavigate();
   const form = useForm({
-    defaultValues: {
       fullName: "",
       email: "",
       password: "",
       confirmPassword: "",
-    },
   });
 
   const onSubmit = async (data) => {
@@ -41,50 +38,6 @@ const SignUp = () => {
     } catch (error) {
       console.error("Error signing up:", error);
       alert("Error signing up. Please try again.");
-    }
-  };
-
-  const handleGoogleAuth = async (credentialResponse, isNewUser) => {
-    try {
-      const token = credentialResponse.credential;
-      const decoded = jwt_decode(token);
-
-      const user = {
-        googleId: decoded.sub, 
-        name: decoded.name,
-        email: decoded.email,
-        picture: decoded.picture,
-        isNewUser,
-      };
-      console.log(user);
-
-      const response = await axios.post(`${API_URL}/google`, user);
-
-      console.log(
-        `${isNewUser ? "Signup" : "Login"} successful`,
-        response.data
-      );
-
-      if (
-        response.data.message === "User created successfully" ||
-        response.data.message === "User logged in successfully"
-      ) {
-        alert(`${isNewUser ? "Signup" : "Login"} successful!`);
-        navigate("/dashboard");
-      } else {
-        console.error("Error:", response.data.message);
-        alert(response.data.message);
-      }
-    } catch (error) {
-      if (error.response) {
-        // Server error response
-        console.error("Server Error:", error.response.data.message);
-        alert(`Error: ${error.response.data.message}`);
-      } else {
-        // Network error
-        console.error("Network Error:", error.message);
-        alert("Authentication failed. Please check your connection.");
-      }
     }
   };
 

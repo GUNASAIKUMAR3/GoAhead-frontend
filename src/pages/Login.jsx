@@ -38,55 +38,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogleAuth = async (credentialResponse, isNewUser) => {
-    try {
-      // Decode the JWT token
-      const token = credentialResponse.credential;
-      const decoded = jwt_decode(token);
-
-      // Extract user details
-      const user = {
-        googleId: decoded.sub, // Google's unique user ID
-        name: decoded.name,
-        email: decoded.email,
-        picture: decoded.picture,
-        isNewUser, // True for signup, false for login
-      };
-
-      console.log(user);
-
-      // Send data to backend using Axios
-      const response = await axios.post(`${API_URL}/google`, user);
-
-      // Handle successful response
-      console.log(
-        `${isNewUser ? "Signup" : "Login"} successful`,
-        response.data
-      );
-
-      if (
-        response.data.message === "User created successfully" ||
-        response.data.message === "User logged in successfully"
-      ) {
-        alert(`${isNewUser ? "Signup" : "Login"} successful!`);
-        navigate("/dashboard"); // Redirect to dashboard
-      } else {
-        console.error("Error:", response.data.message);
-        alert(response.data.message);
-      }
-    } catch (error) {
-      if (error.response) {
-        // Server error response
-        console.error("Server Error:", error.response.data.message);
-        alert(`Error: ${error.response.data.message}`);
-      } else {
-        // Network error
-        console.error("Network Error:", error.message);
-        alert("Authentication failed. Please check your connection.");
-      }
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-feature-bg flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-lg">
