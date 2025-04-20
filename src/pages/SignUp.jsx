@@ -11,10 +11,9 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
 import { jwt_decode } from "jwt-decode-es";
 
-let API_URL = "https://goahead-backend.onrender.com/api/auth"; ///////
+let API_URL = "https://goahead-backend.onrender.com/api/auth"; 
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -37,8 +36,7 @@ const SignUp = () => {
       const response = await axios.post(`${API_URL}/signup`, data);
 
       if (response.data.message === "User registered successfully.") {
-        //alert("User registered successfully.");
-        navigate("/dashboard"); // Redirect to dashboard after successful signup
+        navigate("/dashboard"); 
       }
     } catch (error) {
       console.error("Error signing up:", error);
@@ -48,13 +46,11 @@ const SignUp = () => {
 
   const handleGoogleAuth = async (credentialResponse, isNewUser) => {
     try {
-      // Decode the JWT token
       const token = credentialResponse.credential;
       const decoded = jwt_decode(token);
 
-      // Extract user details
       const user = {
-        googleId: decoded.sub, // Google's unique user ID
+        googleId: decoded.sub, 
         name: decoded.name,
         email: decoded.email,
         picture: decoded.picture,
@@ -62,10 +58,8 @@ const SignUp = () => {
       };
       console.log(user);
 
-      // Send data to backend using Axios
       const response = await axios.post(`${API_URL}/google`, user);
 
-      // Handle successful response
       console.log(
         `${isNewUser ? "Signup" : "Login"} successful`,
         response.data
@@ -76,7 +70,7 @@ const SignUp = () => {
         response.data.message === "User logged in successfully"
       ) {
         alert(`${isNewUser ? "Signup" : "Login"} successful!`);
-        navigate("/dashboard"); // Redirect to dashboard
+        navigate("/dashboard");
       } else {
         console.error("Error:", response.data.message);
         alert(response.data.message);
