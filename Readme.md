@@ -23,7 +23,13 @@ This project is a versatile application that allows users to plan their study sc
 
    ```bash
    git clone https://github.com/GUNASAIKUMAR3/GoAhead-frontend.git
+
    cd GoAhead-frontend
    npm install
    npm run dev
    ```
+
+### Explanation:
+
+- `![Home Page](./screenshot/home.png)` adds the home page screenshot.
+- `![Dashboard](./screenshot/dashboard.png)` adds the dashboard screenshot.
