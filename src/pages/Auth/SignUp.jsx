@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let BACKEND_URL = import.meta.env.BACKEND_URL;
+let VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -30,7 +30,13 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/auth/signup`, data);
+      const response = await axios.post(
+        `${VITE_BACKEND_URL}/api/auth/signup`,
+        data
+      );
+
+      console.log(`${VITE_BACKEND_URL}/api/auth/signup`);
+      console.log();
 
       if (response.data.message === "User registered successfully.") {
         localStorage.setItem("isAuth", "true");

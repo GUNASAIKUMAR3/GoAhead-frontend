@@ -18,12 +18,13 @@ const Header = () => {
           >
             Get Started
           </Button>
-          {bool == "true" ? (
-            <Button variant="ghost" onClick={() => navigate("/login")}>
-              Login{" "}
-            </Button>
-          ) : (
-            <Button onClick={() => navigate("/signup")}>Sign Up</Button>
+          {bool == "false" && (
+            <>
+              <Button variant="ghost" onClick={() => navigate("/login")}>
+                Login
+              </Button>
+              <Button onClick={() => navigate("/signup")}>Sign Up</Button>
+            </>
           )}
         </nav>
       </div>

@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let BACKEND_URL = import.meta.env.BACKEND_URL;
+let VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,7 +26,10 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/auth/login`, data);
+      const response = await axios.post(
+        `${VITE_BACKEND_URL}/api/auth/login`,
+        data
+      );
 
       if (response.data.message === "Login successful") {
         localStorage.setItem("isAuth", "true");
