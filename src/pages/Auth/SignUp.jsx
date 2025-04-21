@@ -33,11 +33,13 @@ const SignUp = () => {
       const response = await axios.post(`${BACKEND_URL}/api/auth/signup`, data);
 
       if (response.data.message === "User registered successfully.") {
+        localStorage.setItem("isAuth", "true");
         navigate("/dashboard");
       }
     } catch (error) {
       console.error("Error signing up:", error);
       alert("Error signing up. Please try again.");
+      localStorage.setItem("isAuth", "false");
     }
   };
 

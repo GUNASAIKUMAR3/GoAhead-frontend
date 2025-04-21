@@ -29,9 +29,11 @@ const Login = () => {
       const response = await axios.post(`${BACKEND_URL}/api/auth/login`, data);
 
       if (response.data.message === "Login successful") {
+        localStorage.setItem("isAuth", "true");
         navigate("/dashboard");
       }
     } catch (error) {
+      localStorage.setItem("isAuth", "false");
       console.error("Error logging in:", error);
       alert("Invalid credentials. Please try again.");
     }
