@@ -32,7 +32,11 @@ const Login = () => {
       );
 
       if (response.data.message === "Login successful") {
+        console.log(response.data);
         localStorage.setItem("isAuth", "true");
+        localStorage.setItem("fullName", response.data.user.fullName);
+        localStorage.setItem("email", response.data.user.email);
+
         navigate("/dashboard");
       }
     } catch (error) {

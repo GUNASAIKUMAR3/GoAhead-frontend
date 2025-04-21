@@ -17,10 +17,12 @@ let VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const SignUp = () => {
   const navigate = useNavigate();
   const form = useForm({
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    defaultValues: {
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
   });
 
   const onSubmit = async (data) => {
@@ -35,17 +37,20 @@ const SignUp = () => {
         data
       );
 
-      console.log(`${VITE_BACKEND_URL}/api/auth/signup`);
-      console.log();
+      console.log(response);
 
       if (response.data.message === "User registered successfully.") {
         localStorage.setItem("isAuth", "true");
+
+        localStorage.setItem("fullName", data.fullName);
+        localStorage.setItem("email", data.email);
+
         navigate("/dashboard");
       }
     } catch (error) {
+      localStorage.setItem("isAuth", "false");
       console.error("Error signing up:", error);
       alert("Error signing up. Please try again.");
-      localStorage.setItem("isAuth", "false");
     }
   };
 

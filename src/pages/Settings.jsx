@@ -9,10 +9,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
 import { toast } from "sonner";
 
+let Data = localStorage.getItem("Data");
+
+console.log(JSON.stringify(Data).fullName);
+
 const Settings = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("john@example.com");
+  const [name, setName] = useState(localStorage.getItem("fullName"));
+  const [email, setEmail] = useState(localStorage.getItem("email"));
+
   const [profilePicture, setProfilePicture] = useState("/placeholder.svg");
 
   const handleSaveChanges = () => {
@@ -20,9 +25,8 @@ const Settings = () => {
   };
 
   const handleResetDefaults = () => {
-    setName("John Doe");
-    setEmail("john@example.com");
-    setProfilePicture("/placeholder.svg");
+    // setName("John Doe");
+    // setEmail("john@example.com");
     toast.info("Settings reset to defaults");
   };
 

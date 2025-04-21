@@ -10,6 +10,12 @@ import Dashboard from "./pages/Dashboard";
 import Analysis from "./pages/Analysis";
 import Settings from "./pages/Settings";
 
+if (localStorage.getItem("Auth") == "false") {
+  localStorage.setItem("isAuth", "false");
+  localStorage.setItem("fullName", "false");
+  localStorage.setItem("email", "false");
+}
+
 const App = () => (
   <TooltipProvider>
     <Toaster />
