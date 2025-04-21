@@ -7,7 +7,6 @@ import Index from "./pages/Index";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import Dashboard from "./pages/Dashboard";
-import Analysis from "./pages/Analysis";
 import Settings from "./pages/Settings";
 
 if (localStorage.getItem("Auth") == "false") {
@@ -26,7 +25,6 @@ const App = () => (
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/analysis" element={<Analysis />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
