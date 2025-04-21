@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let BACKEND_URL = process.env.BACKEND_URL;
+let BACKEND_URL = import.meta.env.BACKEND_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();

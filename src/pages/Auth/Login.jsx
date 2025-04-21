@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form,FormControl,FormField,FormItem,FormLabel,FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let BACKEND_URL = process.env.BACKEND_URL;
+let BACKEND_URL = import.meta.env.BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
