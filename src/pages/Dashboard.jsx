@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { TaskInput } from "@/components/tasks/TaskInput";
 import { TaskList } from "@/components/tasks/TaskList";
 import { useNavigate } from "react-router-dom";
+import { ChatBot } from "./ChatBot";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -125,6 +126,10 @@ const Dashboard = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div>
+        <ChatBot />
       </div>
     </div>
   );
