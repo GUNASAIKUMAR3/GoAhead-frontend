@@ -1,11 +1,7 @@
 import React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
-import {
-  Controller,
-  FormProvider,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FormProvider, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 
@@ -77,13 +73,18 @@ FormLabel.displayName = "FormLabel";
 
 // Form control component (for managing control accessibility)
 const FormControl = React.forwardRef(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
+  const { error, formItemId, formDescriptionId, formMessageId } =
+    useFormField();
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
       aria-invalid={!!error}
       {...props}
     />
@@ -107,28 +108,29 @@ const FormDescription = React.forwardRef(({ className, ...props }, ref) => {
 FormDescription.displayName = "FormDescription";
 
 // Form message component (for displaying error messages)
-const FormMessage = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
+const FormMessage = React.forwardRef(
+  ({ className, children, ...props }, ref) => {
+    const { error, formMessageId } = useFormField();
+    const body = error ? String(error?.message) : children;
 
-  if (!body) {
-    return null;
+    if (!body) {
+      return null;
+    }
+
+    return (
+      <p
+        ref={ref}
+        id={formMessageId}
+        className={cn("text-sm font-medium text-destructive", className)}
+        {...props}
+      >
+        {body}
+      </p>
+    );
   }
-
-  return (
-    <p
-      ref={ref}
-      id={formMessageId}
-      className={cn("text-sm font-medium text-destructive", className)}
-      {...props}
-    >
-      {body}
-    </p>
-  );
-});
+);
 FormMessage.displayName = "FormMessage";
 
-// Exporting components for use
 export {
   useFormField,
   Form,

@@ -12,15 +12,15 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let API_URL = "https://goahead-backend.onrender.com/api/auth"; 
+let BACKEND_URL = process.env.BACKEND_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
   const form = useForm({
-      fullName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const onSubmit = async (data) => {
@@ -30,10 +30,10 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post(`${API_URL}/signup`, data);
+      const response = await axios.post(`${BACKEND_URL}/api/auth/signup`, data);
 
       if (response.data.message === "User registered successfully.") {
-        navigate("/dashboard"); 
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("Error signing up:", error);

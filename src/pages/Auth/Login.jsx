@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let API_URL = "https://goahead-backend.onrender.com/api/auth";
+let BACKEND_URL = process.env.BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -18,11 +19,10 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${API_URL}/login`, data);
+      const response = await axios.post(`${BACKEND_URL}/api/auth/login`, data);
 
       if (response.data.message === "Login successful") {
-        // alert("Login successful");
-        navigate("/dashboard"); // Redirect to dashboard or another page after successful login
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("Error logging in:", error);
