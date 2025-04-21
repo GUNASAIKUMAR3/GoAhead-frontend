@@ -30,6 +30,7 @@ This project is a versatile application that allows users to plan their study sc
    ```
 
 ### Explanation:
+- ![the home page screenshot](https://github.com/user-attachments/assets/f8d2b1c4-269b-402f-bb1d-b8f914a84440)
+- ![the dashboard screenshot.](https://github.com/user-attachments/assets/7a2b3fa5-5809-4db0-b0ee-d207a40a3987)
 
-- `![Home Page](./screenshot/home.png)` adds the home page screenshot.
-- `![Dashboard](./screenshot/dashboard.png)` adds the dashboard screenshot.
+
