@@ -10,16 +10,25 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold text-primary">GoAhead</div>
         <nav className="flex gap-4">
-          <Button
-            variant="ghost"
-            onClick={() =>
-              bool == "true" ? navigate("/dashboard") : navigate("/login")
-            }
-          >
-            Get Started
-          </Button>
-          {bool == "false" && (
+          {bool == "true" ? (
+            <Button
+              variant="ghost"
+              onClick={() =>
+                bool == "true" ? navigate("/dashboard") : navigate("/login")
+              }
+            >
+              Get Started
+            </Button>
+          ) : (
             <>
+              <Button
+                variant="ghost"
+                onClick={() =>
+                  bool == "true" ? navigate("/dashboard") : navigate("/login")
+                }
+              >
+                Get Started
+              </Button>
               <Button variant="ghost" onClick={() => navigate("/login")}>
                 Login
               </Button>
