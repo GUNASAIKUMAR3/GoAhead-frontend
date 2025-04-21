@@ -9,10 +9,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
 import { toast } from "sonner";
 
-let Data = localStorage.getItem("Data");
-
-console.log(JSON.stringify(Data).fullName);
-
 const Settings = () => {
   const navigate = useNavigate();
   const [name, setName] = useState(localStorage.getItem("fullName"));
@@ -24,13 +20,6 @@ const Settings = () => {
     toast.success("Settings saved successfully!");
   };
 
-  const handleResetDefaults = () => {
-    // setName("John Doe");
-    // setEmail("john@example.com");
-    toast.info("Settings reset to defaults");
-  };
-
-  // Modified event handler for image upload (removed TypeScript-specific types)
   const handleImageUpload = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -139,46 +128,10 @@ const Settings = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Password Settings */}
-              <div className="p-6 rounded-lg border border-gray-200">
-                <h3 className="text-lg font-semibold mb-4">
-                  Password & Security
-                </h3>
-                <Button variant="outline" className="w-full mb-4">
-                  Change Password
-                </Button>
-                <Button variant="outline" className="w-full">
-                  Enable Two-Factor Authentication
-                </Button>
-              </div>
-
-              {/* Help & Support */}
-              <div className="p-6 rounded-lg border border-gray-200">
-                <h3 className="text-lg font-semibold mb-4">Help & Support</h3>
-                <div className="space-y-4">
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => navigate("/faq")}
-                  >
-                    FAQ
-                  </Button>
-                  <Button variant="outline" className="w-full">
-                    Contact Support
-                  </Button>
-                  <Button variant="outline" className="w-full">
-                    Submit Feedback
-                  </Button>
-                </div>
-              </div>
             </div>
 
-            {/* Save & Reset Options */}
+            {/* Save */}
             <div className="flex justify-end gap-4 mt-8">
-              <Button variant="outline" onClick={handleResetDefaults}>
-                Reset to Default
-              </Button>
               <Button onClick={handleSaveChanges}>Save Changes</Button>
             </div>
           </div>

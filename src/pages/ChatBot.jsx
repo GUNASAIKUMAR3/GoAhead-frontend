@@ -8,7 +8,7 @@ const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 export const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: "bot", text: "You can ask me any thing" },
+    { from: "bot", text: "You can ask me anything" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
