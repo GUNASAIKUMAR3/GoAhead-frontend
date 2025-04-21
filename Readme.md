@@ -20,8 +20,11 @@ This project is a versatile application that allows users to plan their study sc
 ## Setup Instructions
 
 1. Clone the repository:
+
+   ```
    git clone https://github.com/GUNASAIKUMAR3/GoAhead-frontend.git
 
    cd GoAhead-frontend
    npm install
    npm run dev
+   ```
