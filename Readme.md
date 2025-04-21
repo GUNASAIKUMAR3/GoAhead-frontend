@@ -21,7 +21,7 @@ This project is a versatile application that allows users to plan their study sc
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone https://github.com/GUNASAIKUMAR3/GoAhead-frontend.git
 
    cd GoAhead-frontend
